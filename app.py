@@ -6,7 +6,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 app = Flask(__name__)
 
 # Load and preprocess the dataset
-file_path = 'My Projects/BR3/ld.csv'
+file_path = 'ld.csv'
 books_df = pd.read_csv(file_path)
 
 books_df['Author(s)'].fillna('', inplace=True)
