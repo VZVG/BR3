@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIBER Book Recommender</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1e90ff;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            flex: 1;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1e90ff;
+            color: #ffffff;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        button:hover {
+            background-color: #4682b4;
+        }
+        .recommendations {
+            margin-top: 20px;
+        }
+        .recommendations h2 {
+            color: #1e90ff;
+            margin-bottom: 10px;
+        }
+        .recommendations ul {
+            list-style: none;
+            padding: 0;
+        }
+        .recommendations li {
+            background-color: #f0f8ff;
+            border: 1px solid #1e90ff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>D.I.B.E.R. Book Recommender</h1>
+        <form method="post" action="/recommend">
+            <input type="text" name="book_title" placeholder="Enter book title" required>
+            <button type="submit">Search</button>
+        </form>
+        {% if error_message %}
+        <div class="error">{{ error_message }}</div>
+        {% endif %}
+        {% if recommendations %}
+        <div class="recommendations">
+            <h2>Recommendations for "{{ book_title }}"</h2>
+            <ul>
+                {% for book in recommendations %}
+                <li>{{ book }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
